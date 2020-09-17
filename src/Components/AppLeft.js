@@ -4,62 +4,61 @@ import InfoBox from "./InfoBox";
 import Map from "./Map";
 import "../Styles/AppLeft.css";
 
-function AppLeft() {
-  // all STATE is a way to store values in a variable in ReactJS
-  const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState("worldwide");
-  const [countryInfo, setCountryInfo] = useState({});
+function AppLeft({ countries, country, countryInfo, handleCountryChange }) {
+  //   // all STATE is a way to store values in a variable in ReactJS
+  //   const [countries, setCountries] = useState([]);
+  //   const [country, setCountry] = useState("worldwide");
+  //   const [countryInfo, setCountryInfo] = useState({});
 
-  // API call from disease.sh --> https://disease.sh/v3/covid-19/countries
+  //   // API call from disease.sh --> https://disease.sh/v3/covid-19/countries
 
-  useEffect(() => {
-    fetch("https://disease.sh/v3/covid-19/all")
-      .then((response) => response.json())
-      .then((data) => {
-        setCountryInfo(data);
-      });
-  }, []);
+  //   useEffect(() => {
+  //     fetch("https://disease.sh/v3/covid-19/all")
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         setCountryInfo(data);
+  //       });
+  //   }, []);
 
-  useEffect(() => {
-    // UseEffect runs a piece of code based on a given condition inside [..condition..]
-    //code here will run once when the component loads becoz. [] is blank
-    // async --> send a request , wait for it, do something with it
+  //   useEffect(() => {
+  //     // UseEffect runs a piece of code based on a given condition inside [..condition..]
+  //     //code here will run once when the component loads becoz. [] is blank
+  //     // async --> send a request , wait for it, do something with it
 
-    const getCountriesData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/countries")
-        .then((response) => response.json())
-        .then((data) => {
-          const countries = data.map((country) => ({
-            name: country.country, // NAME of country
-            value: country.countryInfo.iso2, // code of country i.e. USA, UK, IND
-          }));
-          setCountries(countries);
-        });
-    };
+  //     const getCountriesData = async () => {
+  //       await fetch("https://disease.sh/v3/covid-19/countries")
+  //         .then((response) => response.json())
+  //         .then((data) => {
+  //           const countries = data.map((country) => ({
+  //             name: country.country, // NAME of country
+  //             value: country.countryInfo.iso2, // code of country i.e. USA, UK, IND
+  //           }));
+  //           setCountries(countries);
+  //         });
+  //     };
 
-    getCountriesData();
-  }, []);
+  //     getCountriesData();
+  //   }, []);
 
-  const handleCountryChange = async (e) => {
-    const countryCode = e.target.value;
-    setCountry(countryCode);
+  //   const handleCountryChange = async (e) => {
+  //     const countryCode = e.target.value;
+  //     setCountry(countryCode);
 
-    const url =
-      countryCode === "worldwide"
-        ? "https://disease.sh/v3/covid-19/all"
-        : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
-    //console.log(url);
-    await fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setCountry(countryCode);
+  //     const url =
+  //       countryCode === "worldwide"
+  //         ? "https://disease.sh/v3/covid-19/all"
+  //         : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+  //     //console.log(url);
+  //     await fetch(url)
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         setCountry(countryCode);
 
-        // all the data from country response
-        setCountryInfo(data);
-      });
-  };
+  //         // all the data from country response
+  //         setCountryInfo(data);
+  //       });
+  //   };
 
-  console.log(countryInfo, "countryInfo");
   return (
     <div className="appLeft">
       {/* Header */}
