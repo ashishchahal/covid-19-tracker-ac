@@ -3,6 +3,7 @@ import { FormControl, Select, MenuItem } from "@material-ui/core";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
 import "../Styles/AppLeft.css";
+import { prettyPrintStat } from "../utils";
 
 function AppLeft({
   countries,
@@ -11,6 +12,7 @@ function AppLeft({
   handleCountryChange,
   mapZoom,
   mapCenter,
+  mapCountries,
 }) {
   return (
     <div className="appLeft">
@@ -36,28 +38,28 @@ function AppLeft({
         {/* InfoBoxs title="Coronavirus cases" */}
         <InfoBox
           title="Coronavirus Cases"
-          cases={countryInfo.todayCases}
-          total={countryInfo.cases}
+          cases={prettyPrintStat(countryInfo.todayCases)}
+          total={prettyPrintStat(countryInfo.cases)}
         />
 
         {/* InfoBoxs title="Coronavirus recovery" */}
         <InfoBox
           title="Recovered"
-          cases={countryInfo.todayRecovered}
-          total={countryInfo.recovered}
+          cases={prettyPrintStat(countryInfo.todayRecovered)}
+          total={prettyPrintStat(countryInfo.recovered)}
         />
 
         {/* InfoBoxs */}
         <InfoBox
           title="Deaths"
-          cases={countryInfo.todayDeaths}
-          total={countryInfo.deaths}
+          cases={prettyPrintStat(countryInfo.todayDeaths)}
+          total={prettyPrintStat(countryInfo.deaths)}
         />
       </div>
 
       {console.log(mapCenter, mapZoom, "map🏃‍♂️")}
       {/* Map */}
-      <Map center={mapCenter} zoom={mapZoom} />
+      <Map center={mapCenter} zoom={mapZoom} countries={mapCountries} />
     </div>
   );
 }
