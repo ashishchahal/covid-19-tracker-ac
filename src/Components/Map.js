@@ -1,9 +1,18 @@
 import React from "react";
+import { Map as LeafletMap, TileLayer } from "react-leaflet";
+import "../Styles/Map.css";
 
-function Map() {
+// include import "leaflet/dist/leaflet.css" in App.js
+function Map({ center, zoom }) {
+  console.log(center, zoom, "mapmapmap");
   return (
     <div className="map">
-      <h1>I ma a map</h1>
+      <LeafletMap center={center} zoom={zoom}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+      </LeafletMap>
     </div>
   );
 }
