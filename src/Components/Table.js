@@ -1,15 +1,15 @@
 import React from "react";
 import "../Styles/Table.css";
+import numeral from "numeral";
 
 function Table({ tableData }) {
-  //console.log(tableData, "🔥");
   return (
     <div className="table">
       {tableData.map(({ country, cases }) => (
         <tr>
           <td>{country}</td>
           <td>
-            <strong>{cases}</strong>
+            <strong>{numeral(cases).format("0,0")}</strong>
           </td>
         </tr>
       ))}

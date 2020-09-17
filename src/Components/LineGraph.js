@@ -47,7 +47,7 @@ const options = {
   },
 };
 
-function LineGraph({ casesType = "cases" }) {
+function LineGraph({ casesType = "cases", ...props }) {
   const [data, setData] = useState({});
 
   const buildChartData = (data, casesType = "cases") => {
@@ -73,17 +73,15 @@ function LineGraph({ casesType = "cases" }) {
         .then((res) => res.json())
         .then((data) => {
           //clever stuff here
-          console.log(data, "🔫");
-          const chartData = buildChartData(data, "cases");
+          const chartData = buildChartData(data, casesType);
           setData(chartData);
-          console.log(chartData);
         });
     };
     fetchData();
   }, [casesType]);
 
   return (
-    <div className="lineGraph">
+    <div className={props.className}>
       {data?.length > 0 && (
         <Line
           options={options}

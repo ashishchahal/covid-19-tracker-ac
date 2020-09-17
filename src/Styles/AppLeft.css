@@ -5,6 +5,14 @@
   margin-bottom: 20px;
 }
 
+.appLeft__header > h1 {
+  color: #fc3c3c;
+  font-size: 2rem;
+}
+
+.appLeft__dropdown {
+  background-color: white;
+}
 .appLeft__stats {
   display: flex;
   justify-content: space-between;

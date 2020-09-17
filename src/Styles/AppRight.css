@@ -1,0 +1,23 @@
+.appRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.appRight .MuiCardContent-root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.table {
+  margin-bottom: 25px;
+}
+
+.appRight__graphTitle {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.appRight__graph {
+  flex-grow: 1;
+}

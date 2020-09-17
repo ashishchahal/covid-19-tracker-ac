@@ -5,7 +5,6 @@ import { showDataOnMap } from "../utils";
 
 // include import "leaflet/dist/leaflet.css" in App.js
 function Map({ countries, casesType, center, zoom }) {
-  console.log(center, zoom, "mapmapmap");
   return (
     <div className="map">
       <LeafletMap center={center} zoom={zoom}>

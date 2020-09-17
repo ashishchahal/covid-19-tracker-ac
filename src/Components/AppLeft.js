@@ -13,14 +13,18 @@ function AppLeft({
   mapZoom,
   mapCenter,
   mapCountries,
+  casesType,
+  setCasesType,
 }) {
+  //const [casesType, setCasesType] = useState("cases");
+
   return (
     <div className="appLeft">
       {/* Header */}
       <div className="appLeft__header">
         {/* Title + Select input dropdown field */}
-        <h1>Covid tracker app 🚀</h1>
-        <FormControl className="app_dropdown">
+        <h1>Covid tracker</h1>
+        <FormControl className="appLeft__dropdown">
           <Select
             variant="outlined"
             value={country}
@@ -37,6 +41,9 @@ function AppLeft({
       <div className="appLeft__stats">
         {/* InfoBoxs title="Coronavirus cases" */}
         <InfoBox
+          isRed
+          active={casesType === "cases"}
+          onClick={(e) => setCasesType("cases")}
           title="Coronavirus Cases"
           cases={prettyPrintStat(countryInfo.todayCases)}
           total={prettyPrintStat(countryInfo.cases)}
@@ -44,6 +51,8 @@ function AppLeft({
 
         {/* InfoBoxs title="Coronavirus recovery" */}
         <InfoBox
+          active={casesType === "recovered"}
+          onClick={(e) => setCasesType("recovered")}
           title="Recovered"
           cases={prettyPrintStat(countryInfo.todayRecovered)}
           total={prettyPrintStat(countryInfo.recovered)}
@@ -51,15 +60,22 @@ function AppLeft({
 
         {/* InfoBoxs */}
         <InfoBox
+          isRed
+          active={casesType === "deaths"}
+          onClick={(e) => setCasesType("deaths")}
           title="Deaths"
           cases={prettyPrintStat(countryInfo.todayDeaths)}
           total={prettyPrintStat(countryInfo.deaths)}
         />
       </div>
 
-      {console.log(mapCenter, mapZoom, "map🏃‍♂️")}
       {/* Map */}
-      <Map center={mapCenter} zoom={mapZoom} countries={mapCountries} />
+      <Map
+        casesType={casesType}
+        center={mapCenter}
+        zoom={mapZoom}
+        countries={mapCountries}
+      />
     </div>
   );
 }
